@@ -73,6 +73,6 @@ To support decision-making, this project builds a **network design optimization 
 
 ## 📎 License & Credits
 
-- [The case study file](W2L1- NERD4_CaseStudy.pdf) belongs to Caplice, C. (2016). *New England Root Beer Distributors (NERD4) Case Study*. MITx MicroMasters in Supply Chain Management. [Link to program](https://micromasters.mit.edu/scm/)
+- [The case study file](case_study_file.pdf) belongs to Caplice, C. (2016). *New England Root Beer Distributors (NERD4) Case Study*. MITx MicroMasters in Supply Chain Management. [Link to program](https://micromasters.mit.edu/scm/)
 - This project is for educational and personal portfolio use only.
-- This project used free academic license from [Gurobi Optimizer](https://www.gurobi.com/)
+- This project used a free academic license from [Gurobi Optimizer](https://www.gurobi.com/)
