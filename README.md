@@ -137,7 +137,7 @@ After solving the facility location optimization problem using Gurobi, the model
   
 - **All RDC demands are fully satisfied.**
   
--**All DC capacity and flow constraints respected.**
+- **All DC capacity and flow constraints respected.**
 
 ## 🤝 Project Closing & Collaboration
 This project explores a facility location problem using small-scale synthetic data, inspired by academic case studies. It serves as a practical testbed for formulating and solving optimization problems with Python and Gurobi.
