@@ -99,11 +99,11 @@ This problem is modeled as a Mixed Integer Linear Program (MILP) to determine op
 - Flow conservation at DCs (input = output): ∑ₚ zₚᵢ = ∑ⱼ xᵢⱼ    ∀ᵢ ∈ I
 - Non-negativity constraints: xᵢⱼ, zₚᵢ ≥ 0  ∀ᵢ ∈ I, ∀ⱼ ∈ J, ∀ₚ ∈ P;   yᵢ ∈ {0, 1} ∀ᵢ ∈ I
 
-To view the model declaration in Python, open the file ...
+To view the model declaration in Python, open the file [Opt_model.py](Opt_model.py)
 
 ## ✅ Model Results
 
-After solving the facility location optimization problem using Gurobi, the model identified the optimal configuration of distribution centers (DCs) and shipment flows that minimize total operational cost while satisfying all customer demands. To view the data handling and model running code, view the file ...
+After solving the facility location optimization problem using Gurobi, the model identified the optimal configuration of distribution centers (DCs) and shipment flows that minimize total operational cost while satisfying all customer demands. To view the data handling and model running code, view the file [Model_run.ipynb](Model_run.ipynb)
 
 **Key results of the model:**
 
@@ -135,9 +135,9 @@ After solving the facility location optimization problem using Gurobi, the model
      WO → PR: 310.0 barrels;
      WO → WO: 190.0 barrels.
   
-- **All RDC demands are fully satisfied**.
+- **All RDC demands are fully satisfied.**
   
--**All DC capacity and flow constraints respected**.
+-**All DC capacity and flow constraints respected.**
 
 ## 🤝 Project Closing & Collaboration
 This project explores a facility location problem using small-scale synthetic data, inspired by academic case studies. It serves as a practical testbed for formulating and solving optimization problems with Python and Gurobi.
