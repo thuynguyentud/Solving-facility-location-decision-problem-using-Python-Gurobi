@@ -42,6 +42,7 @@ NERD management has raised concerns such as:
 - Can the overall network cost be reduced through better design?
 
 Read in detail about the case study and relevant data at [The case study file](case_study_file.pdf). This file belongs to Caplice, C. (2016). *New England Root Beer Distributors (NERD4) Case Study*. MITx MicroMasters in Supply Chain Management.
+
 ---
 
 ### 💡 Solution Approach in This Project
@@ -74,22 +75,77 @@ To support decision-making, this project builds a **network design optimization 
 This problem is modeled as a Mixed Integer Linear Program (MILP) to determine optimal facility locations, flows, and total cost minimization.
 
 **Sets**
-P: Set of plants
-I: Set of candidate distribution centers (DCs)
-J: Set of regional demand centers (RDCs)
+- P: Set of plants
+- I: Set of candidate DCs
+- J: Set of regional DCs (RDCs)
 
-Parameters
-𝐷
-𝑗
-D 
-j
-​
- : Weekly demand at RDC j ∈ J
+**Parameters**
+- Dⱼ: Weekly demand at RDCⱼ
+- Cᵢ: Capacity of DCᵢ (barrels/week)
+- fᵢ: Fixed weekly cost of opening DCᵢ
+- cᵢⱼ: Cost per barrel from DCᵢ to RDCⱼ (handling + outbound transport)
+- vₚᵢ: Cost per barrel from plantₚ to DCᵢ (production + inbound transport)
 
-C_i: Capacity of DC i ∈ I (barrels/week)
+**Decision Variables**
+- yᵢ ∈ {0, 1}: 1 if DCᵢ is opened, 0 otherwise
+- xᵢⱼ ≥ 0: Quantity shipped from DCᵢ to RDCⱼ
+- zₚᵢ ≥ 0: Quantity shipped from plantₚ to DCᵢ
 
-f_i: Fixed weekly cost of opening DC i
+**Objective Function**: Minimize total weekly cost= ∑ᵢfᵢyᵢ + ∑ᵢ∑ⱼcᵢⱼ.xᵢⱼ + ∑ₚ∑ᵢvₚᵢ.zₚᵢ
 
-c_ij: Cost per barrel from DC i to RDC j (handling + outbound transport)
+**subject to constraints:**
+- Demand satisfaction (RDCs): ∑ᵢxᵢⱼ = Dⱼ    ∀ⱼ ∈ J
+- DC capacity (only if opened): ∑ⱼ xᵢⱼ ≤ Cᵢ.yᵢ    ∀ᵢ ∈ I
+- Flow conservation at DCs (input = output): ∑ₚ zₚᵢ = ∑ⱼ xᵢⱼ    ∀ᵢ ∈ I
+- Non-negativity constraints: xᵢⱼ, zₚᵢ ≥ 0  ∀ᵢ ∈ I, ∀ⱼ ∈ J, ∀ₚ ∈ P;   yᵢ ∈ {0, 1} ∀ᵢ ∈ I
 
-v_pi: Cost per barrel from plant p ∈ P to DC i (production + inbound transport)
+To view the model declaration in Python, open the file ...
+
+## ✅ Model Results
+
+After solving the facility location optimization problem using Gurobi, the model identified the optimal configuration of distribution centers (DCs) and shipment flows that minimize total operational cost while satisfying all customer demands. To view the data handling and model running code, view the file ...
+
+**Key results of the model:**
+
+- **Total cost:** 68,264.50$, in that
+    - Fixed DC Costs: 20000.00$
+    - Inbound Costs: 9825.00$
+    - Outbound Costs: 38439.50$
+      
+- **Opened DCs**: 3 DCs (NA,SP, WO)
+  
+- **Inbound shipments (plant → DC):**
+     BFP → NA: 500.0 barrels;
+     SCP → SP: 500.0 barrels;
+     SCP → WO: 1000.0 barrels.
+
+- **Outbound shipments (DC → RDC):**
+     NA → BR: 50.0 barrels;
+     NA → CO: 80.0 barrels;
+     NA → MN: 110.0 barrels;
+     NA → NA: 140.0 barrels;
+     NA → PO: 120.0 barrels;
+     SP → HA: 130.0 barrels;
+     SP → NH: 140.0 barrels;
+     SP → NL: 30.0 barrels;
+     SP → SP: 200.0 barrels;
+     WO → BO: 450.0 barrels;
+     WO → BR: 10.0 barrels;
+     WO → NL: 40.0 barrels;
+     WO → PR: 310.0 barrels;
+     WO → WO: 190.0 barrels.
+  
+- **All RDC demands are fully satisfied**.
+  
+-**All DC capacity and flow constraints respected**.
+
+## 🤝 Project Closing & Collaboration
+This project explores a facility location problem using small-scale synthetic data, inspired by academic case studies. It serves as a practical testbed for formulating and solving optimization problems with Python and Gurobi.
+
+**Feel free to:**
+- Comment or open issues to discuss ideas
+- Fork and experiment with model extensions
+- Collaborate on improvements or real-world applications
+
+I'm always open to feedback, suggestions, or collaboration opportunities — especially in the areas of supply chain analytics, optimization, and data-driven operations.
+
