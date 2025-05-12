@@ -1,6 +1,6 @@
 # 📦 Facility Location Optimization with Python & Gurobi
 
-This project is a hands-on implementation of the **Facility Location Problem (FLP)** using Python and the Gurobi optimization solver. The scenarios and data used are based on a case study from the [MITx MicroMasters program in Supply Chain Management](https://micromasters.mit.edu/scm/), module [Supply Chain Design](https://www.edx.org/learn/supply-chain-design/massachusetts-institute-of-technology-supply-chain-design), which I took in 2022. 
+This project is a hands-on implementation of the **Facility Location Problem (FLP)** using Python and the Gurobi optimization solver. The scenarios and data used are based on a case study from the [MITx MicroMasters program in Supply Chain Management](https://micromasters.mit.edu/scm/), module [Supply Chain Design](https://www.edx.org/learn/supply-chain-design/massachusetts-institute-of-technology-supply-chain-design), which I took in 2022. This project is for educational and personal portfolio use only.
 
 ---
 
@@ -28,7 +28,7 @@ NERD’s current supply chain includes:
 
 The supply chain operates in two stages:
 1. **Inbound logistics**: shipping root beer barrels from plant(s) to DCs.
-2. **Outbound logistics**: local couriers deliver barrels from DCs to RDCs.
+2. **Outbound logistics**: Local couriers deliver barrels from DCs to RDCs.
 
 ---
 
@@ -36,11 +36,12 @@ The supply chain operates in two stages:
 Despite operational success at the Scranton plant, NERD's **New England distribution network is inefficient and fragmented**, with facilities added over time through mergers and acquisitions rather than design.
 
 NERD management has raised concerns such as:
-- ❓ Are there too many DCs currently in operation?
-- 🏭 Should the Bellows Falls plant be used to support distribution?
-- 📦 Are service levels and capacities appropriate under current and future demand?
-- 💸 Can the overall network cost be reduced through better design?
+- Are there too many DCs currently in operation?
+- Should the Bellows Falls plant be used to support distribution?
+- Are service levels and capacities appropriate under current and future demand?
+- Can the overall network cost be reduced through better design?
 
+Read in detail about the case study and relevant data at [The case study file](case_study_file.pdf). This file belongs to Caplice, C. (2016). *New England Root Beer Distributors (NERD4) Case Study*. MITx MicroMasters in Supply Chain Management.
 ---
 
 ### 💡 Solution Approach in This Project
@@ -65,14 +66,30 @@ To support decision-making, this project builds a **network design optimization 
 ## 🚀 Tools Used
 
 - **Python** (data handling & model setup)
-- **Gurobi** (optimization solver)
-- **Pandas, NumPy** (data processing)
-- **Jupyter Notebooks** (visualization and testing)
+- **Gurobi** (optimization solver). This project used a free academic license from [Gurobi Optimizer](https://www.gurobi.com/)
 
 ---
 
-## 📎 License & Credits
+## 🧮 Mathematical Model
+This problem is modeled as a Mixed Integer Linear Program (MILP) to determine optimal facility locations, flows, and total cost minimization.
 
-- [The case study file](case_study_file.pdf) belongs to Caplice, C. (2016). *New England Root Beer Distributors (NERD4) Case Study*. MITx MicroMasters in Supply Chain Management. [Link to program](https://micromasters.mit.edu/scm/)
-- This project is for educational and personal portfolio use only.
-- This project used a free academic license from [Gurobi Optimizer](https://www.gurobi.com/)
+**Sets**
+P: Set of plants
+I: Set of candidate distribution centers (DCs)
+J: Set of regional demand centers (RDCs)
+
+Parameters
+𝐷
+𝑗
+D 
+j
+​
+ : Weekly demand at RDC j ∈ J
+
+C_i: Capacity of DC i ∈ I (barrels/week)
+
+f_i: Fixed weekly cost of opening DC i
+
+c_ij: Cost per barrel from DC i to RDC j (handling + outbound transport)
+
+v_pi: Cost per barrel from plant p ∈ P to DC i (production + inbound transport)
